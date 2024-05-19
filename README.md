@@ -41,6 +41,7 @@ python main.py
 python /home/baron/Coding/MyPython/airbattle/main.py
 ```
 сделать его исполняемым
+
 для запуска в терминале выполнить:
 ```
 ~/airbattle
