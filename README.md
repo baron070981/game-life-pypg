@@ -34,11 +34,11 @@ python main.py
 
 файл main.py сделать исполняемым
 
-создать bash файл, например с именем airbattle
+в домашней папке создать bash файл, например с именем airbattle
 ```
 #!/bin/bash
 
-python /home/....../airbattle/main.py
+python /home/....../airbattle/main.py (путь до папки с игрой)
 ```
 сделать его исполняемым
 
