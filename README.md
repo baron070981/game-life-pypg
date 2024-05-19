@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 запуск:
 ```
-cd project
+cd game-life-pypg
 python main.py
 ```
 
