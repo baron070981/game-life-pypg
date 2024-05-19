@@ -38,7 +38,8 @@ python main.py
 ```
 #!/bin/bash
 
-python /home/....../airbattle/main.py (путь до папки с игрой)
+# (путь до папки с игрой)
+python /home/....../airbattle/main.py
 ```
 сделать его исполняемым
 
