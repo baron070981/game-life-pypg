@@ -38,7 +38,7 @@ python main.py
 ```
 #!/bin/bash
 
-python /home/baron/Coding/MyPython/airbattle/main.py
+python /home/....../airbattle/main.py
 ```
 сделать его исполняемым
 
