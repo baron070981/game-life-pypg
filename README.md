@@ -1,6 +1,6 @@
 
 # game-life-pypg
-игра "Жизнь" на Python и pygame
+Game of life на Python и pygame
 
 ----
 
