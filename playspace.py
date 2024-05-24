@@ -19,7 +19,7 @@ class Flags:
     GET_SETT: bool = False
 
 
-class PlaySpace:
+class PlaySurface:
     
     def __init__(self, width, height, pos_x, pos_y, background=None, empty_color=(50,50,50,100)):
         # width: int - ширина

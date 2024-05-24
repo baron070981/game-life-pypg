@@ -5,8 +5,8 @@ import random
 from pathlib import Path
 
 
-from playspace import PlaySpace, Flags
-from settingsspace import SettingSpace
+from playspace import PlaySurface, Flags
+from settingsspace import SettingSurface
 from matrixes import Matrix
 
 
@@ -72,15 +72,15 @@ if __name__ == "__main__":
     bg_image = pg.image.load(SRC / 'background.jpg')
     
     # игровое поле
-    play_space = PlaySpace(W, H, PLAY_SPACE_POS[0], PLAY_SPACE_POS[1], background=bg_image)
+    play_surface = PlaySurface(W, H, PLAY_SPACE_POS[0], PLAY_SPACE_POS[1], background=bg_image)
     
     # поле настройки и установок
-    sett_space = SettingSpace(SETT_W, SETT_H, SETT_SPACE_POS[0], SETT_SPACE_POS[1])
-    sett_space.start_btn.setOnClick(start_game)
-    sett_space.stop_btn.setOnClick(stop_game)
-    sett_space.create_btn.setOnClick(onClick=create_matrix)
+    sett_surface = SettingSurface(SETT_W, SETT_H, SETT_SPACE_POS[0], SETT_SPACE_POS[1])
+    sett_surface.start_btn.setOnClick(start_game)
+    sett_surface.stop_btn.setOnClick(stop_game)
+    sett_surface.create_btn.setOnClick(onClick=create_matrix)
     
-    sett_space.start_btn.disable() # отключение кнопки запуска
+    sett_surface.start_btn.disable() # отключение кнопки запуска
     
     while running:
         count_step += 1
@@ -98,50 +98,50 @@ if __name__ == "__main__":
         # если игровой процесс не запущен
         if not Flags.PLAY_RUN:
             
-            sett_space.create_btn.enable()
-            sett_space.random_or_manual.enable()
-            sett_space.input_rows.enable()
-            sett_space.input_columns.enable()
-            sett_space.stop_btn.disable()
+            sett_surface.create_btn.enable()
+            sett_surface.random_or_manual.enable()
+            sett_surface.input_rows.enable()
+            sett_surface.input_columns.enable()
+            sett_surface.stop_btn.disable()
             
             # получение размеров игрового поля (матрицы) из полей ввода
-            COLS, ROW = sett_space.get_matrix_size()
+            COLS, ROW = sett_surface.get_matrix_size()
             # передача полученных размеров в функцию onClick кнопки create_btn
-            sett_space.create_btn.onClickParams = matrix, COLS, ROW
+            sett_surface.create_btn.onClickParams = matrix, COLS, ROW
             # если разрешено создавать матрицу и получать ее размеры
             if Flags.CREATE and Flags.GET_SETT:
                 # если установлен чекбокс в созданной матрице добавляются "живые клетки"
-                if sett_space.is_random_choice():
+                if sett_surface.is_random_choice():
                     s = matrix.mat.shape[0] * matrix.mat.shape[1] // 3
                     matrix.mrandom(s)
-                play_space.set_matrix(matrix.mat)
-                play_space.create_surface_matrix()
+                play_surface.set_matrix(matrix.mat)
+                play_surface.create_surface_matrix()
                 Flags.CREATE = False
                 Flags.GET_SETT = False
-                sett_space.start_btn.enable()
+                sett_surface.start_btn.enable()
         
         # если игровой процесс запущен
         elif Flags.PLAY_RUN:
             # отключаются все виджеты кроме stop_btn,который включается
-            sett_space.create_btn.disable()
-            sett_space.random_or_manual.disable()
-            sett_space.input_rows.disable()
-            sett_space.input_columns.disable()
-            sett_space.start_btn.disable()
-            sett_space.stop_btn.enable()
+            sett_surface.create_btn.disable()
+            sett_surface.random_or_manual.disable()
+            sett_surface.input_rows.disable()
+            sett_surface.input_columns.disable()
+            sett_surface.start_btn.disable()
+            sett_surface.stop_btn.enable()
             
             # в игровое поле передается матрица из 1 и 0
-            play_space.set_matrix(matrix.mat)
+            play_surface.set_matrix(matrix.mat)
             # расчитывается следующее поколение
             matrix.mnext_gen()
         
         
         
-        play_space.draw(screen)
-        sett_space.draw(screen)
+        play_surface.draw(screen)
+        sett_surface.draw(screen)
         # изминение состояния клетки по нажатию левой кнопки мыши
         # 1 становится 0 и наоборот
-        coords = play_space.listen(events)
+        coords = play_surface.listen(events)
         if coords:
             matrix.mreplace_value(coords[0], coords[1])
         

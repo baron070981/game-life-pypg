@@ -9,7 +9,7 @@ from rich import print, inspect
 
 
 
-class SettingSpace:
+class SettingSurface:
     
     def __init__(self, width, height, pos_x, pos_y, bgcolor=None):
         self.width = width
